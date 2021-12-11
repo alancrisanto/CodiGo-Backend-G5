@@ -34,5 +34,5 @@ print(type(edades))
 curso = {
     "nombre": "Backend",
     "npmbre": "Frontend",
-    "dificultad":"dificil"
+    "dificultad":"dificil",
 }
