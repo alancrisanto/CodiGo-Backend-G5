@@ -99,3 +99,4 @@ print(personas[0]["hobbies"][1]["experiencia"])
 del personas[0]
 
 print(personas)
+
