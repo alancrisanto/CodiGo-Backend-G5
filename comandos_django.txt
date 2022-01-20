@@ -6,3 +6,5 @@ python manage.py migrate -> ejecuta las migraciones que no se han realizado en l
 python manage.py showmigrations -> lista todas las migraciones que hay en el proyecto y mediante [x] inidica si la migracion ya se realizo en la BD
 
 python manage.py startapp core -> inicia plantilla core
+
+python manage.py makemigrations <nombreapp> -> generara la migraciones en la base de datos a los cambios realizados para que se vean reflejados 
