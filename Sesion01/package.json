@@ -1,0 +1,34 @@
+{
+  "name": "minimarket",
+  "version": "1.0.0",
+  "description": "proyecto de minimarkets",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alancrisanto/CodiGo-Backend-G5.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "middlewares"
+  ],
+  "author": "acrisanto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alancrisanto/CodiGo-Backend-G5/issues"
+  },
+  "homepage": "https://github.com/alancrisanto/CodiGo-Backend-G5#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
