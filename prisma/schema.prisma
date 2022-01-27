@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Producto {
+  id             Int          @id @unique @default(autoincrement())
+  nombre         String       @db.VarChar(100)
+  precio         Int
+  imagen         String
+  tipoProductoId Int          @map(name: "tipo_producto_id")
+  tipoProducto   TipoProducto @relation(fields: [tipoProductoId], references: [id])
+
+  // map sirve para cambiar el nombre de la tabla, si no se usa se toma el nombre del modelo por defecto
+  @@map(name: "productos")
+}
+
+model TipoProducto {
+  id        Int        @id @unique @default(autoincrement())
+  nombre    String     @unique
+  productos Producto[]
+
+
+  @@map(name: "tipo_productos")
+}
+
+model Permiso {
+  id          Int           @id @default(autoincrement())
+  tipoUsuario TipoUsuario   @map(name: "tipo_usuario")
+  accion      PermisoAccion
+  tabla       String
+}
+
+model Usuario {
+  id          Int         @id @default(autoincrement())
+  nombre      String
+  correo      String      @unique
+  password    String
+  tipoUsuario TipoUsuario @map(name: "tipo_usuario")
+}
+
+enum TipoUsuario {
+  Admin
+  Cliente
+  SuperAdmin
+}
+
+enum PermisoAccion {
+  Create
+  Delete
+  Read
+  Update
+}
