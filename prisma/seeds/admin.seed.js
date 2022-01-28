@@ -1,13 +1,20 @@
+import {hashSync} from "bcrypt";
+
+
 export default async(prisma) => {
 
-    await prisma.usuario.upset({
+    const password = hashSync('Welcome123', 10)
+
+    await prisma.usuario.upsert({
         create: {
             nombre: 'Alan',
             correo: 'alanvcrisanto@gmail.com',
-            password: '123456',
+            password: password,
             tipoUsuario: 'Admin',
         },
-        update: {},
+        update: {
+            password: password,
+        },
         where: {
             correo: 'alanvcrisanto@gmail.com',
         },

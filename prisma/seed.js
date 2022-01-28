@@ -6,15 +6,15 @@ const {PrismaClient} = Prisma;
 const prisma = new PrismaClient();
 
 async function main(){
-    await Promise.all(adminSeed);
+    await Promise.all([adminSeed(prisma)]);
 };
 
 main()
-.catch((e) => {
-    console.log(e);
-    process.exit(1);
-})
-.finally(async () => {
-    // siempre se ejecutara si fue correcto o incorrecto
-    await prisma.$disconnect();
-});
+    .catch((e) => {
+        console.log(e);
+        process.exit(1);
+    })
+    .finally(async () => {
+        // siempre se ejecutara si fue correcto o incorrecto
+        await prisma.$disconnect();
+    });
