@@ -1,16 +1,29 @@
 import { prisma } from "../prisma.js";
+import {compareSync} from "bcrypt";
+import jwt from 'jsonwebtoken';
 
 export class AuthService {
-    static async login({correo, password}){
+    static async login({ correo, password }) {
 
-        // SELECT password, tipo_usuario FROM USUARIO WHERE correo= '....';
-        //si no lo encuentra lanzara un error de not found
+      // SELECT password, tipo_usuario FROM USUARIO WHERE correo= '...';
+      // si no lo encuentra lanzara un error de not found
         const usuarioEncontrado = await prisma.usuario.findUnique({
-            where: {correo},
-            select: {password : true, tipoUsuario: true},
+        where: { correo },
+        select: { password: true, tipoUsuario: true, id: true },
+        rejectOnNotFound: true,
         });
 
-        return {message: "Sí existe"};
-    };
-};
+        const resultado = compareSync(password, usuarioEncontrado.password);
+
+        if (resultado) {
+          const token = jwt.sign({id: usuarioEncontrado.id, mensaje_oculto: "Hola soy un mensaje"}, process.env.JWR_SECRET, 
+          {expiresIn: 100}
+          );
+
+          return {message: "Sí es el usuario", token};
+        } else {
+        return { message: "Credenciales incorrectas" };
+        }
+    }
+}
 
