@@ -1,7 +1,11 @@
 import { Router } from "express";
-import { crearTipoProducto } from "../controllers/tipoProductoController.js";
+import { crearTipoProducto, listarTipoProductos } from "../controllers/tipoProductoController.js";
+import { validarUsuario } from "../utils/validador.js";
 
 export const tipoProductoRouter = Router();
 
-tipoProductoRouter.route("/tipo-producto").post(crearTipoProducto);
+tipoProductoRouter
+    .route("/tipo-producto")
+    .post(validarUsuario, crearTipoProducto)
+    .get(listarTipoProductos);
 

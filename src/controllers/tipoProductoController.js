@@ -1,35 +1,26 @@
 import { TipoProductoService } from "../services/tipoProducto.service.js";
-import jwt from "jsonwebtoken";
+import { tipoProductoDto } from "../services/dtos/request/tipoProducto.dto.js";
 
 export async function crearTipoProducto (req, res) {
 
-    console.log(req.headers)
-    const {authorization} = req.headers;
-
-    if (!authorization) {
-        return res.status(403).json({
-            message: "No tienes los privilegios suficientes para realizar esta acción 🚫",
-        });
-    }
-
-    // se desea solamente la token
-
-    const token = authorization.split(" ")[1];
-
+    console.log(req.user);
+    
     try {
-        const data = jwt.verify(token, process.env.JWR_SECRET);
-        console.log(data);
-        const resultado = await TipoProductoService.crearTipoProducto({
+        const {nombre} = tipoProductoDto(req.body);
 
-            nombreProducto: "",
-            usuarioId: 1,
-        });
-        return res.json(resultado);
-        } catch (error) {
+        const resultado = await TipoProductoService.crearTipoProducto({nombre});
+        return res.status(201).json(resultado)
 
-            console.log(error);
-            return res.status(403).json({
-                message: "Token invalida",
-        });
+    } catch (error) {
+        return res.status(400).json({
+            error: error.message,
+            message: "Error al crear tipo producto",
+        })
     }
+}
+
+export async function listarTipoProductos(req, res) {
+    const resultado = await TipoProductoService.listarTipoProducto();
+
+    return res.json(resultado)
 }

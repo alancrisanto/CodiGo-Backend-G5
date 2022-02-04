@@ -16,8 +16,8 @@ export class AuthService {
         const resultado = compareSync(password, usuarioEncontrado.password);
 
         if (resultado) {
-          const token = jwt.sign({id: usuarioEncontrado.id, mensaje_oculto: "Hola soy un mensaje"}, process.env.JWR_SECRET, 
-          {expiresIn: 100}
+          const token = jwt.sign({id: usuarioEncontrado.id, mensaje_oculto: "Hola soy un mensaje"}, process.env.JWT_SECRET, 
+          {expiresIn: "4h"}
           );
 
           return {message: "Sí es el usuario", token};
