@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import { authRouter } from './routes/auth.routes.js';
 import { tipoProductoRouter } from './routes/tipoProducto.routes.js';
 import {productoRouter} from "./routes/producto.routes.js"
+import {archivoRouter} from "./routes/archivo.routes.js"
 
 const app = express();
 app.use(morgan('dev'));
@@ -13,6 +14,7 @@ app.use(json())
 app.use(authRouter);
 app.use(tipoProductoRouter)
 app.use(productoRouter)
+app.use(archivoRouter)
 
 // fin de la definición
 
