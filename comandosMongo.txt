@@ -1,0 +1,9 @@
+iniciar : mongo
+db : muestra la base de datos en la que me encuentro
+use database_name : nos cambiamos a la base de datos y si no existe la creará
+
+db.tabla_name.insertOne({....}): para insertar una nueva coleccion y si no existe creara una nueva
+db.database_name.insertMany([{...}]): insertar varias colecciones y si no existe las creara
+db.database_name.find(): mostrará todas las colleciones
+db.personas.find({nombre: /n$/ }): buscar personas que terminen con la letra n 
+db.personas.find({nombre: /n/ }): buscar personas que tengan la letra n 
