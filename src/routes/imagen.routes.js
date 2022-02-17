@@ -1,7 +1,9 @@
 import {Router} from 'express';
 import Multer from 'multer';
 import { nanoid } from 'nanoid';
+import { eliminarCategoria } from '../controllers/categorias.controller.js';
 import { subirImagen } from '../controllers/imagen.controller.js';
+import { categoriaRouter } from './categorias.routes.js';
 
 
 export const imagenRouter = Router();
@@ -32,3 +34,5 @@ imagenRouter.post(
     multerMiddleware.single('imagen'),
     subirImagen,
 );
+
+categoriaRouter.route('/categoria/:id').delete(eliminarCategoria)

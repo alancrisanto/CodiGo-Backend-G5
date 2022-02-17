@@ -18,4 +18,18 @@ export async function crearCategoria(req, res) {
 export async function devolverCategorias (req, res){
     const resultado = await CategoriaService.devolver();
     return res.json(resultado);
+
+}
+
+export async function eliminarCategoria(req, res){
+    const resultado = await CategoriaService.eliminar(req.params.id)
+
+    if (resultado) {
+        return res.json(resultado);
+
+    }else{
+        return res.status(400).json({
+            message: "error al eliminar la categoria"
+        });
+    }
 }
