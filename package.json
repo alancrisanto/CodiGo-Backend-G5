@@ -1,0 +1,35 @@
+{
+  "name": "pasarela_de_pagos",
+  "version": "1.0.0",
+  "description": "Proyecto usando pasarelas de pago con mercado pago",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "dotenv -e .env -- nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alancrisanto/CodiGo-Backend-G5.git"
+  },
+  "keywords": [
+    "express",
+    "mercadopago"
+  ],
+  "author": "acrisanto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alancrisanto/CodiGo-Backend-G5/issues"
+  },
+  "homepage": "https://github.com/alancrisanto/CodiGo-Backend-G5#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mercadopago": "^1.5.12",
+    "mongoose": "^6.2.2",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^5.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
